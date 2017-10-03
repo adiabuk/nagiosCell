@@ -1,0 +1,16 @@
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}c{vm}
+    alias           dcserver{vm}
+    address         10.2.225.51
+    hostgroups      linux,dc
+}
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}m{vm}
+    alias           mgtserver{vm}
+    address         10.2.225.1
+    hostgroups      linux
+}
+

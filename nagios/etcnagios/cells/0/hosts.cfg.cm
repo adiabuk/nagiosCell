@@ -1,0 +1,32 @@
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}l{vm}
+    alias           cplserver{vm}
+    address         10.2.225.81
+    hostgroups      linux,cp
+}
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}p{vm}
+    alias           cppserver{vm}
+    address         10.2.225.91
+    hostgroups      linux
+}
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}t{vm}
+    alias           cstserver{vm}
+    address         10.2.225.111
+    hostgroups      linux
+}
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}u{vm}
+    alias           mgtserver{vm}
+    address         10.2.225.1
+    hostgroups      linux
+}
+

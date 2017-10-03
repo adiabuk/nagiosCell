@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. /etc/revision
+
+# Nagios Setup Script
+
+wget http://build/infrastructure/"$REVISION"/nagios/check_scripts.tgz -P /tmp
+wget http://build/infrastructure/"$REVISION"/nagios/etcnagios.tgz -P /tmp
+wget http://build/infrastructure/"$REVISION"/nagios/nagioslib.tgz -P /tmp
+wget http://build/infrastructure/"$REVISION"/nagios/populate.pl -P /tmp
+
+tar zxvf /tmp/check_scripts.tgz -C /tmp
+mv /tmp/check_scripts/* /usr/lib64/nagios/plugins
+mv /tmp/check_scripts/eventhandlers/submit_check_result.nsca /usr/lib64/nagios/plugins/eventhandlers/
+
+tar zxvf /tmp/nagioslib.tgz -C /usr/lib64/nagios/
+
+[[ $PROFILE == "mgt" ]] &&  perl /tmp/populate.pl && /sbin/chkconfig/nagios on
+echo "I am a $PROFILE server"
+
+rm /etc/nagios/nrpe.cfg &>/dev/null
+wget http://build/infrastructure/$REVISION/nagios/nrpe.cfg -P /etc/nagios/
+/etc/init.d/nrpe start
+/sbin/chkconfig nrpe on

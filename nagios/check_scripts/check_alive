@@ -1,0 +1,11 @@
+#!/bin/bash
+
+hostip=$1
+hostname=$2
+/usr/lib64/nagios/plugins/check_ping -H $hostip -w 100.0,50% -c 200.0,60% &>/dev/null
+result=$?
+
+CFG="/etc/nagios/send_nsca.cfg"
+CMD="$hostname;$result;Host Status"
+/bin/echo "$CMD" | /usr/sbin/send_nsca -H nagios -d ';' -c $CFG
+exit 0

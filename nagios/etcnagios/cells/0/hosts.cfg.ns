@@ -1,0 +1,33 @@
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}n{vm}
+    alias           nslserver{vm}
+    address         10.2.225.41
+    hostgroups      linux,nsl
+}
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}m{vm}
+    alias           mgtserver{vm}
+    address         10.2.225.1
+    hostgroups      linux
+}
+
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}q{vm}
+    alias           quoserver{vm}
+    address         10.2.225.71
+    hostgroups      linux,nsl
+}
+
+define host{
+    use             linux-server
+    host_name       chi{pur}{env}{tin}{cell}{cell2}s{vm}
+    alias           strserver{vm}
+    address         10.2.225.61
+    hostgroups      linux,nsl
+}
+
